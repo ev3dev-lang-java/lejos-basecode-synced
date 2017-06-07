@@ -3,6 +3,8 @@ import org.eclipse.jgit.diff.DiffEntry;
 import org.eclipse.jgit.diff.DiffFormatter;
 import org.eclipse.jgit.lib.ObjectId;
 import org.eclipse.jgit.lib.ObjectReader;
+import org.eclipse.jgit.lib.Repository;
+import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
 import org.eclipse.jgit.treewalk.CanonicalTreeParser;
 
 import java.io.ByteArrayOutputStream;
@@ -12,6 +14,9 @@ import java.util.List;
 public class JGitDiff {
 
     public static void main(String[] args) throws Exception {
+
+        Repository repository = new FileRepositoryBuilder()
+                .setGitDir(new File("../temp-lejos-mirror/.git")).build();
 
         File gitWorkDir = new File("../temp-lejos-mirror/");
         Git git = Git.open(gitWorkDir);
